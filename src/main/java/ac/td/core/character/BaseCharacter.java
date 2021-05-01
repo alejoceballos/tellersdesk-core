@@ -73,7 +73,8 @@ public class BaseCharacter implements Cloneable, SkillfulCharacter, AnchoredChar
 
     @Override
     public int getSkill(final SkillType skillType) {
-        return this.traits.get(skillType.name());
+        final Object skillValue = this.traits.get(skillType.name());
+        return skillValue == null ? 0 : (int) skillValue;
     }
 
     @Override

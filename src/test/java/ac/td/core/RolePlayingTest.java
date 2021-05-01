@@ -1,8 +1,6 @@
 package ac.td.core;
 
-import ac.td.core.action.task.TaskException;
 import ac.td.core.character.*;
-import ac.td.core.diceroll.DiceRollException;
 import ac.td.core.session.Session;
 import ac.td.core.session.SessionBuilderException;
 import ac.td.core.skill.SpecialtyType;
@@ -60,7 +58,7 @@ public class RolePlayingTest {
                 .setSocialSkills(0, 1, 0, 2, 1, 0, 1, 2)
                 .setMentalSkills(0, 0, 0, 3, 1, 0, 0, 0)
                 // Step Five: Pick Skill Specialties
-                .setSpecialties(SpecialtyType.DUMMY_1, SpecialtyType.DUMMY_2, SpecialtyType.DUMMY_3)
+                .setSpecialties(SpecialtyType.NOT_APPLICABLE, SpecialtyType.MOTORCYCLES, SpecialtyType.EVASION)
                 // Step Six: Merits
                 // Step Seven: Determine Advantages
                 // Finally assemble the character
@@ -100,7 +98,7 @@ public class RolePlayingTest {
                 .setMentalSkills(1, 1, 0, 0, 4, 0, 0, 1)
                 .setSocialSkills(0, 2, 0, 0, 1, 1, 0, 0)
                 // Step Five: Pick Skill Specialties
-                .setSpecialties(SpecialtyType.DUMMY_1, SpecialtyType.DUMMY_2, SpecialtyType.DUMMY_3)
+                .setSpecialties(SpecialtyType.NOT_APPLICABLE, SpecialtyType.MOTORCYCLES, SpecialtyType.EVASION)
                 // Step Six: Merits
                 // Step Seven: Determine Advantages
                 // Finally assemble the character
@@ -141,7 +139,7 @@ public class RolePlayingTest {
                 .setSocialSkills(0, 0, 2, 0, 3, 2, 0, 0)
                 .setPhysicalSkills(1, 0, 1, 2, 0, 0, 0, 0)
                 // Step Five: Pick Skill Specialties
-                .setSpecialties(SpecialtyType.DUMMY_1, SpecialtyType.DUMMY_2, SpecialtyType.DUMMY_3)
+                .setSpecialties(SpecialtyType.NOT_APPLICABLE, SpecialtyType.MOTORCYCLES, SpecialtyType.EVASION)
                 // Step Six: Merits
                 // Step Seven: Determine Advantages
                 // Finally assemble the character

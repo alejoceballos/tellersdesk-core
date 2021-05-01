@@ -3,7 +3,6 @@ package ac.td.core.action.task.skill;
 import ac.td.core.action.task.Task;
 import ac.td.core.action.task.TaskCharacterException;
 import ac.td.core.action.task.TaskDieFactoryException;
-import ac.td.core.action.task.skill.drive.TaskVehicleException;
 import ac.td.core.character.CategoryType;
 import ac.td.core.character.SkillfulCharacter;
 import ac.td.core.diceroll.DieFactory;

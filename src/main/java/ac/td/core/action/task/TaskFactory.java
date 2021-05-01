@@ -1,8 +1,5 @@
 package ac.td.core.action.task;
 
-import ac.td.core.action.task.skill.drive.Drive;
-import ac.td.core.action.task.skill.drive.TaskVehicleException;
-import ac.td.core.action.task.skill.drive.VehicleModelType;
 import ac.td.core.character.SkillfulCharacter;
 import ac.td.core.diceroll.DieFactory;
 
@@ -25,10 +22,5 @@ public class TaskFactory {
 
         this.character = character;
         this.dieFactory = dieFactory;
-    }
-
-    public Drive createDriveTask(final VehicleModelType vehicle)
-            throws TaskDieFactoryException, TaskCharacterException, TaskVehicleException {
-        return new Drive(this.character, this.dieFactory, vehicle);
     }
 }

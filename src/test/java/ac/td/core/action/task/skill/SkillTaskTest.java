@@ -45,7 +45,7 @@ public abstract class SkillTaskTest<T extends SkillTask> extends TaskTest<T> {
                 () -> this.creatTask(
                         Mockito.mock(SkillfulCharacter.class),
                         Mockito.mock(DieFactory.class),
-                        Set.of(SpecialtyType.DUMMY_1)));
+                        Set.of(SpecialtyType.NOT_APPLICABLE)));
     }
 
     @Test

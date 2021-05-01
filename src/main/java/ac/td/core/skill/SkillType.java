@@ -3,6 +3,7 @@ package ac.td.core.skill;
 import ac.td.core.character.CategoryType;
 
 public enum SkillType {
+    NOT_APPLICABLE(CategoryType.NOT_APPLICABLE),
     // Mental
     ACADEMICS(CategoryType.MENTAL),
     COMPUTER(CategoryType.MENTAL),

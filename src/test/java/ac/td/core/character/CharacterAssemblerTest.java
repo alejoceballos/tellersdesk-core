@@ -13,7 +13,10 @@ class CharacterAssemblerTest {
                 .setConcept("Character's concept")
                 .setVirtue(VirtueType.FAITH)
                 .setVice(ViceType.GREED)
-                .setSpecialties(SpecialtyType.DUMMY_1, SpecialtyType.DUMMY_2, SpecialtyType.DUMMY_3);
+                .setSpecialties(
+                        SpecialtyType.HISTORY,
+                        SpecialtyType.ENGLISH_LITERATURE,
+                        SpecialtyType.LINGUISTICS);
         Assertions.assertEquals(builder.calculateSpentXp(), 0);
 
         BaseCharacter beginner = builder.assemble();
@@ -33,7 +36,7 @@ class CharacterAssemblerTest {
                 .setConcept("Character's concept")
                 .setVirtue(VirtueType.FAITH)
                 .setVice(ViceType.GREED)
-                .setSpecialties(SpecialtyType.DUMMY_1, SpecialtyType.DUMMY_2, SpecialtyType.DUMMY_3);
+                .setSpecialties(SpecialtyType.NOT_APPLICABLE, SpecialtyType.MOTORCYCLES, SpecialtyType.EVASION);
         Assertions.assertEquals(builder.calculateSpentXp(), 0);
         Assertions.assertEquals(builder.assemble().getExperiencePoints(), 69);
     }
@@ -44,7 +47,7 @@ class CharacterAssemblerTest {
                 .setConcept("Character's concept")
                 .setVirtue(VirtueType.FAITH)
                 .setVice(ViceType.GREED)
-                .setSpecialties(SpecialtyType.DUMMY_1, SpecialtyType.DUMMY_2, SpecialtyType.DUMMY_3);
+                .setSpecialties(SpecialtyType.NOT_APPLICABLE, SpecialtyType.MOTORCYCLES, SpecialtyType.EVASION);
         Assertions.assertEquals(builder.calculateSpentXp(), 0);
         Assertions.assertEquals(builder.assemble().getExperiencePoints(), 109);
     }
@@ -55,7 +58,7 @@ class CharacterAssemblerTest {
                 .setConcept("Character's concept")
                 .setVirtue(VirtueType.FAITH)
                 .setVice(ViceType.GREED)
-                .setSpecialties(SpecialtyType.DUMMY_1, SpecialtyType.DUMMY_2, SpecialtyType.DUMMY_3);
+                .setSpecialties(SpecialtyType.NOT_APPLICABLE, SpecialtyType.MOTORCYCLES, SpecialtyType.EVASION);
         Assertions.assertEquals(builder.calculateSpentXp(), 0);
         Assertions.assertEquals(builder.assemble().getExperiencePoints(), 134);
     }
@@ -66,7 +69,7 @@ class CharacterAssemblerTest {
                 .setConcept("Character's concept")
                 .setVirtue(VirtueType.FAITH)
                 .setVice(ViceType.GREED)
-                .setSpecialties(SpecialtyType.DUMMY_1, SpecialtyType.DUMMY_2, SpecialtyType.DUMMY_3);
+                .setSpecialties(SpecialtyType.NOT_APPLICABLE, SpecialtyType.MOTORCYCLES, SpecialtyType.EVASION);
         assembler.assemble();
         Assertions.assertThrows(CharacterAlreadyBuiltException.class, assembler::assemble);
     }
@@ -99,7 +102,7 @@ class CharacterAssemblerTest {
                 .setPhysicalSkills(0, 0, 2, 0, 0, 2, 0, 0)
 
                 // Step Five: Pick Skill Specialties
-                .setSpecialties(SpecialtyType.DUMMY_1, SpecialtyType.DUMMY_2, SpecialtyType.DUMMY_3)
+                .setSpecialties(SpecialtyType.NOT_APPLICABLE, SpecialtyType.MOTORCYCLES, SpecialtyType.EVASION)
                 // Step Six: Merits
 
                 // Step Seven: Determine Advantages

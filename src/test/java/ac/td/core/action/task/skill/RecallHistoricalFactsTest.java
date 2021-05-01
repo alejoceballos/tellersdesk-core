@@ -1,6 +1,7 @@
-package ac.td.core.action.task;
+package ac.td.core.action.task.skill;
 
 import ac.td.core.action.ActionType;
+import ac.td.core.action.task.TaskException;
 import ac.td.core.action.task.skill.RecallHistoricalFacts;
 import ac.td.core.action.task.skill.SkillTaskTest;
 import ac.td.core.character.AttributeType;
