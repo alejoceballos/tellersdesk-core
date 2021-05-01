@@ -1,9 +1,13 @@
 package ac.td.core.action.task;
 
+import ac.td.core.action.task.skill.RecallHistoricalFacts;
+import ac.td.core.action.task.skill.WrongSpecialtySkillException;
 import ac.td.core.character.SkillfulCharacter;
 import ac.td.core.diceroll.DieFactory;
+import ac.td.core.skill.SpecialtyType;
 
 import java.util.Objects;
+import java.util.Set;
 
 public class TaskFactory {
     private final SkillfulCharacter character;
@@ -22,5 +26,14 @@ public class TaskFactory {
 
         this.character = character;
         this.dieFactory = dieFactory;
+    }
+
+    public RecallHistoricalFacts createRecallHistoricalFacts() throws TaskCharacterException, TaskDieFactoryException {
+        return new RecallHistoricalFacts(this.character, this.dieFactory);
+    }
+
+    public RecallHistoricalFacts createRecallHistoricalFacts(final Set<SpecialtyType> nonDefaultApplicableSpecialties)
+            throws TaskCharacterException, TaskDieFactoryException, WrongSpecialtySkillException {
+        return new RecallHistoricalFacts(this.character, this.dieFactory, nonDefaultApplicableSpecialties);
     }
 }

@@ -36,7 +36,7 @@ public abstract class SkillTask extends Task {
             );
 
             if (!allSpecialtiesFromDrivingSkill) {
-                throw new WrongSpecialtySkillException("Specialty does not relate to driving skill");
+                throw new WrongSpecialtySkillException("Specialty does not relate to the driving skill");
             }
 
             this.nonDefaultApplicableSpecialties.addAll(nonDefaultApplicableSpecialties);
