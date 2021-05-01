@@ -12,13 +12,13 @@ import ac.td.core.skill.SpecialtyType;
 
 import java.util.Set;
 
-public class RecallHistoricalFacts extends SkillTask {
-    public RecallHistoricalFacts(final SkillfulCharacter character, final DieFactory dieFactory)
+public class Research extends SkillTask {
+    public Research(final SkillfulCharacter character, final DieFactory dieFactory)
             throws TaskCharacterException, TaskDieFactoryException {
         super(character, dieFactory);
     }
 
-    public RecallHistoricalFacts(
+    public Research(
             final SkillfulCharacter character,
             final DieFactory dieFactory,
             final Set<SpecialtyType> nonDefaultApplicableSpecialties)
@@ -28,7 +28,7 @@ public class RecallHistoricalFacts extends SkillTask {
 
     @Override
     public int calculateBasicPoolSize() {
-        final int attribute = this.character.getAttribute(AttributeType.INTELLIGENCE);
+        final int attribute = this.character.getAttribute(AttributeType.RESOLVE);
         final int skill = this.character.getSkill(this.getDrivingSkill());
         final int modifiers = this.calculateModifiersDicePoolSize();
 
@@ -37,7 +37,7 @@ public class RecallHistoricalFacts extends SkillTask {
 
     @Override
     public ActionType getType() {
-        return ActionType.INSTANT;
+        return ActionType.EXTENDED;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class RecallHistoricalFacts extends SkillTask {
 
     @Override
     public Set<SpecialtyType> getDefaultApplicableSpecialties() {
-        return Set.of(SpecialtyType.HISTORY);
+        return Set.of(SpecialtyType.RESEARCH);
     }
 
     @Override

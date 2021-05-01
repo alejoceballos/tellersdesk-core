@@ -1,6 +1,7 @@
 package ac.td.core.action.task;
 
 import ac.td.core.action.task.skill.RecallHistoricalFacts;
+import ac.td.core.action.task.skill.Research;
 import ac.td.core.action.task.skill.WrongSpecialtySkillException;
 import ac.td.core.character.SkillfulCharacter;
 import ac.td.core.diceroll.DieFactory;
@@ -35,5 +36,14 @@ public class TaskFactory {
     public RecallHistoricalFacts createRecallHistoricalFacts(final Set<SpecialtyType> nonDefaultApplicableSpecialties)
             throws TaskCharacterException, TaskDieFactoryException, WrongSpecialtySkillException {
         return new RecallHistoricalFacts(this.character, this.dieFactory, nonDefaultApplicableSpecialties);
+    }
+
+    public Research createResearch() throws TaskCharacterException, TaskDieFactoryException {
+        return new Research(this.character, this.dieFactory);
+    }
+
+    public Research createResearch(final Set<SpecialtyType> nonDefaultApplicableSpecialties)
+            throws TaskCharacterException, TaskDieFactoryException, WrongSpecialtySkillException {
+        return new Research(this.character, this.dieFactory, nonDefaultApplicableSpecialties);
     }
 }

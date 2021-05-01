@@ -1,6 +1,7 @@
 package ac.td.core.action.task;
 
 import ac.td.core.action.task.skill.RecallHistoricalFacts;
+import ac.td.core.action.task.skill.Research;
 import ac.td.core.character.SkillfulCharacter;
 import ac.td.core.diceroll.DieFactory;
 import ac.td.core.skill.SpecialtyType;
@@ -42,6 +43,26 @@ class TaskFactoryTest {
                 Mockito.mock(SkillfulCharacter.class),
                 Mockito.mock(DieFactory.class)
         ).createRecallHistoricalFacts(Set.of(SpecialtyType.ENGLISH_LITERATURE));
+
+        Assertions.assertNotNull(task);
+    }
+
+    @Test
+    public void createResearch_default() throws TaskException {
+        final Research task = new TaskFactory(
+                Mockito.mock(SkillfulCharacter.class),
+                Mockito.mock(DieFactory.class)
+        ).createResearch();
+
+        Assertions.assertNotNull(task);
+    }
+
+    @Test
+    public void createResearch_nonDefault() throws TaskException {
+        final Research task = new TaskFactory(
+                Mockito.mock(SkillfulCharacter.class),
+                Mockito.mock(DieFactory.class)
+        ).createResearch(Set.of(SpecialtyType.ENGLISH_LITERATURE));
 
         Assertions.assertNotNull(task);
     }
