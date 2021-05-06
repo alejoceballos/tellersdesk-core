@@ -54,4 +54,15 @@ public class TaskFactory {
             throws TaskCharacterException, TaskDieFactoryException, WrongSpecialtySkillException {
         return new Translation(this.character, this.dieFactory, nonDefaultApplicableSpecialties);
     }
+
+    public HackIntoComputerSystem createHackIntoComputerSystem()
+            throws TaskCharacterException, TaskDieFactoryException {
+        return new HackIntoComputerSystem(this.character, this.dieFactory);
+    }
+
+    public HackIntoComputerSystem createHackIntoComputerSystem(final Set<SpecialtyType> nonDefaultApplicableSpecialties)
+            throws TaskCharacterException, TaskDieFactoryException, WrongSpecialtySkillException {
+        return new HackIntoComputerSystem(this.character, this.dieFactory, nonDefaultApplicableSpecialties);
+    }
+
 }

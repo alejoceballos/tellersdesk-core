@@ -1,5 +1,6 @@
 package ac.td.core.action.task;
 
+import ac.td.core.action.task.skill.HackIntoComputerSystem;
 import ac.td.core.action.task.skill.RecallHistoricalFacts;
 import ac.td.core.action.task.skill.Research;
 import ac.td.core.action.task.skill.Translation;
@@ -84,6 +85,27 @@ class TaskFactoryTest {
                 Mockito.mock(SkillfulCharacter.class),
                 Mockito.mock(DieFactory.class)
         ).createTranslation(Set.of(SpecialtyType.ENGLISH_LITERATURE));
+
+        Assertions.assertNotNull(task);
+    }
+
+
+    @Test
+    public void createHackIntoComputerSystem_default() throws TaskException {
+        final HackIntoComputerSystem task = new TaskFactory(
+                Mockito.mock(SkillfulCharacter.class),
+                Mockito.mock(DieFactory.class)
+        ).createHackIntoComputerSystem();
+
+        Assertions.assertNotNull(task);
+    }
+
+    @Test
+    public void createHackIntoComputerSystem_nonDefault() throws TaskException {
+        final HackIntoComputerSystem task = new TaskFactory(
+                Mockito.mock(SkillfulCharacter.class),
+                Mockito.mock(DieFactory.class)
+        ).createHackIntoComputerSystem(Set.of(SpecialtyType.HACKING));
 
         Assertions.assertNotNull(task);
     }

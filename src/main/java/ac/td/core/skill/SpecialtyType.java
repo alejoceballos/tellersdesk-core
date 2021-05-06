@@ -9,6 +9,12 @@ public enum SpecialtyType {
     LAW(SkillType.ACADEMICS),
     LINGUISTICS(SkillType.ACADEMICS),
     RESEARCH(SkillType.ACADEMICS),
+    //   COMPUTER
+    DATA_RETRIEVAL(SkillType.COMPUTER),
+    DIGITAL_SECURITY(SkillType.COMPUTER),
+    HACKING(SkillType.COMPUTER),
+    PROGRAMMING(SkillType.COMPUTER),
+    USER_INTERFACE_DESIGN(SkillType.COMPUTER),
 
     // PHYSICAL
     EVASION(SkillType.DRIVE),
