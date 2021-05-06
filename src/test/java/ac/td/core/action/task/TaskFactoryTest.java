@@ -2,6 +2,7 @@ package ac.td.core.action.task;
 
 import ac.td.core.action.task.skill.RecallHistoricalFacts;
 import ac.td.core.action.task.skill.Research;
+import ac.td.core.action.task.skill.Translation;
 import ac.td.core.character.SkillfulCharacter;
 import ac.td.core.diceroll.DieFactory;
 import ac.td.core.skill.SpecialtyType;
@@ -66,4 +67,25 @@ class TaskFactoryTest {
 
         Assertions.assertNotNull(task);
     }
+
+    @Test
+    public void createTranslation_default() throws TaskException {
+        final Translation task = new TaskFactory(
+                Mockito.mock(SkillfulCharacter.class),
+                Mockito.mock(DieFactory.class)
+        ).createTranslation();
+
+        Assertions.assertNotNull(task);
+    }
+
+    @Test
+    public void createTranslation_nonDefault() throws TaskException {
+        final Translation task = new TaskFactory(
+                Mockito.mock(SkillfulCharacter.class),
+                Mockito.mock(DieFactory.class)
+        ).createTranslation(Set.of(SpecialtyType.ENGLISH_LITERATURE));
+
+        Assertions.assertNotNull(task);
+    }
+
 }

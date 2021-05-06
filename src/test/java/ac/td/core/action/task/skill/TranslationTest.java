@@ -17,26 +17,26 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-public class ResearchTest extends SkillTaskTest<Research> {
+public class TranslationTest extends SkillTaskTest<Translation> {
 
     @Override
-    protected Research creatTask(final SkillfulCharacter character, final DieFactory dieFactory) throws TaskException {
-        return new Research(character, dieFactory);
+    protected Translation creatTask(final SkillfulCharacter character, final DieFactory dieFactory) throws TaskException {
+        return new Translation(character, dieFactory);
     }
 
     @Override
-    protected Research creatTask(
+    protected Translation creatTask(
             final SkillfulCharacter character,
             final DieFactory dieFactory,
             final Set<SpecialtyType> nonDefaultApplicableSpecialties) throws TaskException {
-        return new Research(character, dieFactory, nonDefaultApplicableSpecialties);
+        return new Translation(character, dieFactory, nonDefaultApplicableSpecialties);
     }
 
     @Override
     @Test
     public void calculateDicePoolSize() throws TaskException {
         final SkillfulCharacter character = Mockito.mock(SkillfulCharacter.class);
-        Mockito.when(character.getAttribute(AttributeType.RESOLVE)).thenReturn(1);
+        Mockito.when(character.getAttribute(AttributeType.INTELLIGENCE)).thenReturn(1);
         Mockito.when(character.getSkill(this.getAssertionDrivingSkill())).thenReturn(2);
 
         Assertions.assertEquals(
@@ -50,9 +50,9 @@ public class ResearchTest extends SkillTaskTest<Research> {
     @Test
     public void calculateDicePoolSize_WithSkillFamiliarityAndWithSpecialty() throws TaskException {
         final SkillfulCharacter character = Mockito.mock(SkillfulCharacter.class);
-        Mockito.when(character.getAttribute(AttributeType.RESOLVE)).thenReturn(1);
+        Mockito.when(character.getAttribute(AttributeType.INTELLIGENCE)).thenReturn(1);
         Mockito.when(character.getSkill(this.getAssertionDrivingSkill())).thenReturn(2);
-        Mockito.when(character.getSpecialties()).thenReturn(Set.of(SpecialtyType.RESEARCH)); // +1
+        Mockito.when(character.getSpecialties()).thenReturn(Set.of(SpecialtyType.LINGUISTICS)); // +1
 
         Assertions.assertEquals(
                 1,
@@ -65,7 +65,7 @@ public class ResearchTest extends SkillTaskTest<Research> {
     @Test
     public void calculateDicePoolSize_WithoutSkillFamiliarity() throws TaskException {
         final SkillfulCharacter character = Mockito.mock(SkillfulCharacter.class);
-        Mockito.when(character.getAttribute(AttributeType.RESOLVE)).thenReturn(4);
+        Mockito.when(character.getAttribute(AttributeType.INTELLIGENCE)).thenReturn(4);
         Mockito.when(character.getSkill(this.getAssertionDrivingSkill())).thenReturn(0); // MENTAL: -3
 
         Assertions.assertEquals(
@@ -77,7 +77,7 @@ public class ResearchTest extends SkillTaskTest<Research> {
 
     @Override
     public Set<SpecialtyType> getAssertionApplicableSpecialties() {
-        return Set.of(SpecialtyType.RESEARCH);
+        return Set.of(SpecialtyType.LINGUISTICS);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class ResearchTest extends SkillTaskTest<Research> {
     @Test
     public void perform() throws TaskException, DiceRollException {
         final SkillfulCharacter character = Mockito.mock(SkillfulCharacter.class);
-        Mockito.when(character.getAttribute(AttributeType.RESOLVE)).thenReturn(1);
+        Mockito.when(character.getAttribute(AttributeType.INTELLIGENCE)).thenReturn(1);
         Mockito.when(character.getSkill(this.getAssertionDrivingSkill())).thenReturn(2);
 
         final DieFactory dieFactory = Mockito.mock(DieFactory.class);
@@ -111,7 +111,7 @@ public class ResearchTest extends SkillTaskTest<Research> {
 
     @Override
     public ActionType getAssertionType() {
-        return ActionType.EXTENDED;
+        return ActionType.INSTANT;
     }
 
     @Override

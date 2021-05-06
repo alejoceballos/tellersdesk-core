@@ -39,7 +39,7 @@ public class RecallHistoricalFactsTest extends SkillTaskTest<RecallHistoricalFac
     public void calculateDicePoolSize() throws TaskException {
         final SkillfulCharacter character = Mockito.mock(SkillfulCharacter.class);
         Mockito.when(character.getAttribute(AttributeType.INTELLIGENCE)).thenReturn(1);
-        Mockito.when(character.getSkill(SkillType.ACADEMICS)).thenReturn(2);
+        Mockito.when(character.getSkill(this.getAssertionDrivingSkill())).thenReturn(2);
 
         Assertions.assertEquals(
                 0,
@@ -53,7 +53,7 @@ public class RecallHistoricalFactsTest extends SkillTaskTest<RecallHistoricalFac
     public void calculateDicePoolSize_WithSkillFamiliarityAndWithSpecialty() throws TaskException {
         final SkillfulCharacter character = Mockito.mock(SkillfulCharacter.class);
         Mockito.when(character.getAttribute(AttributeType.INTELLIGENCE)).thenReturn(1);
-        Mockito.when(character.getSkill(SkillType.ACADEMICS)).thenReturn(2);
+        Mockito.when(character.getSkill(this.getAssertionDrivingSkill())).thenReturn(2);
         Mockito.when(character.getSpecialties()).thenReturn(Set.of(SpecialtyType.HISTORY)); // +1
 
         Assertions.assertEquals(
@@ -68,7 +68,7 @@ public class RecallHistoricalFactsTest extends SkillTaskTest<RecallHistoricalFac
     public void calculateDicePoolSize_WithoutSkillFamiliarity() throws TaskException {
         final SkillfulCharacter character = Mockito.mock(SkillfulCharacter.class);
         Mockito.when(character.getAttribute(AttributeType.INTELLIGENCE)).thenReturn(4);
-        Mockito.when(character.getSkill(SkillType.ACADEMICS)).thenReturn(0); // MENTAL: -3
+        Mockito.when(character.getSkill(this.getAssertionDrivingSkill())).thenReturn(0); // MENTAL: -3
 
         Assertions.assertEquals(
                 0,
@@ -92,7 +92,7 @@ public class RecallHistoricalFactsTest extends SkillTaskTest<RecallHistoricalFac
     public void perform() throws TaskException, DiceRollException {
         final SkillfulCharacter character = Mockito.mock(SkillfulCharacter.class);
         Mockito.when(character.getAttribute(AttributeType.INTELLIGENCE)).thenReturn(1);
-        Mockito.when(character.getSkill(SkillType.ACADEMICS)).thenReturn(2);
+        Mockito.when(character.getSkill(this.getAssertionDrivingSkill())).thenReturn(2);
 
         final DieFactory dieFactory = Mockito.mock(DieFactory.class);
         final List<Integer> expectedResult = Arrays.asList(6, 7);
