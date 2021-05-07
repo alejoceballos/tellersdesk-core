@@ -1,7 +1,5 @@
 package ac.td.core.action.task;
 
-import ac.td.core.action.ActionType;
-import ac.td.core.character.CategoryType;
 import ac.td.core.character.SkillfulCharacter;
 import ac.td.core.diceroll.DiceRoll;
 import ac.td.core.diceroll.DiceRollAnalysisType;
@@ -10,7 +8,6 @@ import ac.td.core.diceroll.DieFactory;
 
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.Set;
 
 public abstract class Task {
 
@@ -72,14 +69,6 @@ public abstract class Task {
         this.rollDiceUntilIsFinished(diceRoll);
     }
 
-    public int calculateDicePoolSize() {
-        return this.calculateBasicPoolSize();
-    }
-
-    public abstract int calculateBasicPoolSize();
-
-    public abstract ActionType getType();
-
-    public abstract Set<CategoryType> getCategories();
+    public abstract int calculateDicePoolSize();
 
 }

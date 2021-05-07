@@ -85,21 +85,9 @@ public abstract class TaskTest<T extends Task> {
     }
 
     @Test
-    public void getType() throws TaskException {
-        final Task task = this.creatTask(Mockito.mock(SkillfulCharacter.class), Mockito.mock(DieFactory.class));
-        Assertions.assertEquals(this.getAssertionType(), task.getType());
-    }
-
-    public abstract ActionType getAssertionType();
+    public abstract void getType() throws TaskException;
 
     @Test
-    public void getCategories() throws TaskException {
-        final Task task = this.creatTask(Mockito.mock(SkillfulCharacter.class), Mockito.mock(DieFactory.class));
-        Assertions.assertEquals(this.getAssertionCategories().size(), task.getCategories().size());
-        Assertions.assertTrue(this.getAssertionCategories().containsAll(task.getCategories()));
-        Assertions.assertTrue(task.getCategories().containsAll(this.getAssertionCategories()));
-    }
-
-    public abstract Set<CategoryType> getAssertionCategories();
+    public abstract void getCategories() throws TaskException;
 
 }

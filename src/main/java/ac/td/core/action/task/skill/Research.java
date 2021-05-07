@@ -12,6 +12,13 @@ import ac.td.core.skill.SpecialtyType;
 
 import java.util.Set;
 
+@SkillMetadata(
+        type = ActionType.EXTENDED,
+        categories = CategoryType.MENTAL,
+        defaultApplicableSpecialties = SpecialtyType.RESEARCH,
+        drivingSkill = SkillType.ACADEMICS,
+        drivingAttribute = AttributeType.RESOLVE
+)
 public class Research extends SkillTask {
     public Research(final SkillfulCharacter character, final DieFactory dieFactory)
             throws TaskCharacterException, TaskDieFactoryException {
@@ -24,34 +31,5 @@ public class Research extends SkillTask {
             final Set<SpecialtyType> nonDefaultApplicableSpecialties)
             throws TaskCharacterException, TaskDieFactoryException, WrongSpecialtySkillException {
         super(character, dieFactory, nonDefaultApplicableSpecialties);
-    }
-
-    @Override
-    public int calculateBasicPoolSize() {
-        final int attribute = this.character.getAttribute(AttributeType.RESOLVE);
-        final int skill = this.character.getSkill(this.getDrivingSkill());
-        final int modifiers = this.calculateModifiersDicePoolSize();
-
-        return attribute + skill + modifiers;
-    }
-
-    @Override
-    public ActionType getType() {
-        return ActionType.EXTENDED;
-    }
-
-    @Override
-    public Set<CategoryType> getCategories() {
-        return Set.of(CategoryType.MENTAL);
-    }
-
-    @Override
-    public Set<SpecialtyType> getDefaultApplicableSpecialties() {
-        return Set.of(SpecialtyType.RESEARCH);
-    }
-
-    @Override
-    public SkillType getDrivingSkill() {
-        return SkillType.ACADEMICS;
     }
 }

@@ -12,7 +12,16 @@ import ac.td.core.skill.SpecialtyType;
 
 import java.util.Set;
 
+
+@SkillMetadata(
+        type = ActionType.EXTENDED,
+        categories = CategoryType.MENTAL,
+        defaultApplicableSpecialties = { SpecialtyType.HACKING, SpecialtyType.DIGITAL_SECURITY },
+        drivingSkill = SkillType.COMPUTER,
+        drivingAttribute = AttributeType.INTELLIGENCE
+)
 public class HackIntoComputerSystem extends SkillTask {
+
     public HackIntoComputerSystem(final SkillfulCharacter character, final DieFactory dieFactory)
             throws TaskCharacterException, TaskDieFactoryException {
         super(character, dieFactory);
@@ -26,32 +35,4 @@ public class HackIntoComputerSystem extends SkillTask {
         super(character, dieFactory, nonDefaultApplicableSpecialties);
     }
 
-    @Override
-    public int calculateBasicPoolSize() {
-        final int attribute = this.character.getAttribute(AttributeType.INTELLIGENCE);
-        final int skill = this.character.getSkill(this.getDrivingSkill());
-        final int modifiers = this.calculateModifiersDicePoolSize();
-
-        return attribute + skill + modifiers;
-    }
-
-    @Override
-    public ActionType getType() {
-        return ActionType.EXTENDED;
-    }
-
-    @Override
-    public Set<CategoryType> getCategories() {
-        return Set.of(CategoryType.MENTAL);
-    }
-
-    @Override
-    public Set<SpecialtyType> getDefaultApplicableSpecialties() {
-        return Set.of(SpecialtyType.HACKING, SpecialtyType.DIGITAL_SECURITY);
-    }
-
-    @Override
-    public SkillType getDrivingSkill() {
-        return SkillType.COMPUTER;
-    }
 }

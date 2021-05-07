@@ -1,8 +1,11 @@
 package ac.td.core.action.task.attribute;
 
+import ac.td.core.action.ActionType;
+import ac.td.core.action.task.Task;
 import ac.td.core.action.task.TaskException;
 import ac.td.core.action.task.TaskTest;
 import ac.td.core.character.AttributeType;
+import ac.td.core.character.CategoryType;
 import ac.td.core.character.SkillfulCharacter;
 import ac.td.core.diceroll.DiceRollException;
 import ac.td.core.diceroll.DieFactory;
@@ -62,6 +65,24 @@ public abstract class AttributeTaskTest<T extends AttributeTask> extends TaskTes
         Assertions.assertTrue(expected.containsAll(task.getDrivingAttributes()));
     }
 
+    @Test
+    public void getType() throws TaskException {
+        final AttributeTask task = this.creatTask(Mockito.mock(SkillfulCharacter.class), Mockito.mock(DieFactory.class));
+        Assertions.assertEquals(this.getAssertionType(), task.getType());
+    }
+
+    public abstract ActionType getAssertionType();
+
+    @Test
+    public void getCategories() throws TaskException {
+        final AttributeTask task = this.creatTask(Mockito.mock(SkillfulCharacter.class), Mockito.mock(DieFactory.class));
+        Assertions.assertEquals(this.getAssertionCategories().size(), task.getCategories().size());
+        Assertions.assertTrue(this.getAssertionCategories().containsAll(task.getCategories()));
+        Assertions.assertTrue(task.getCategories().containsAll(this.getAssertionCategories()));
+    }
+
     protected abstract AttributeType[] contextDrivingAttributes();
+
+    public abstract Set<CategoryType> getAssertionCategories();
 
 }

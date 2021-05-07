@@ -1,9 +1,11 @@
 package ac.td.core.action.task.attribute;
 
+import ac.td.core.action.ActionType;
 import ac.td.core.action.task.Task;
 import ac.td.core.action.task.TaskCharacterException;
 import ac.td.core.action.task.TaskDieFactoryException;
 import ac.td.core.character.AttributeType;
+import ac.td.core.character.CategoryType;
 import ac.td.core.character.SkillfulCharacter;
 import ac.td.core.diceroll.DieFactory;
 
@@ -16,7 +18,7 @@ public abstract class AttributeTask extends Task {
     }
 
     @Override
-    public int calculateBasicPoolSize() {
+    public int calculateDicePoolSize() {
         final int attributesDicePool = this.getDrivingAttributes().stream()
                 .mapToInt(this.character::getAttribute)
                 .sum();
@@ -26,5 +28,9 @@ public abstract class AttributeTask extends Task {
     }
 
     public abstract Set<AttributeType> getDrivingAttributes();
+
+    public abstract ActionType getType();
+
+    public abstract Set<CategoryType> getCategories();
 
 }

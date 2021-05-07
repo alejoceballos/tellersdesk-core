@@ -17,6 +17,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+@SkillMetadata(
+        type = ActionType.EXTENDED,
+        categories = CategoryType.MENTAL,
+        defaultApplicableSpecialties = { SpecialtyType.HACKING, SpecialtyType.DIGITAL_SECURITY },
+        drivingSkill = SkillType.COMPUTER,
+        drivingAttribute = AttributeType.INTELLIGENCE
+)
 public class HackIntoComputerSystemTest extends SkillTaskTest<HackIntoComputerSystem> {
 
     @Override
@@ -32,92 +39,4 @@ public class HackIntoComputerSystemTest extends SkillTaskTest<HackIntoComputerSy
             final Set<SpecialtyType> nonDefaultApplicableSpecialties) throws TaskException {
         return new HackIntoComputerSystem(character, dieFactory, nonDefaultApplicableSpecialties);
     }
-
-    @Override
-    @Test
-    public void calculateDicePoolSize() throws TaskException {
-        final SkillfulCharacter character = Mockito.mock(SkillfulCharacter.class);
-        Mockito.when(character.getAttribute(AttributeType.INTELLIGENCE)).thenReturn(1);
-        Mockito.when(character.getSkill(this.getAssertionDrivingSkill())).thenReturn(2);
-
-        Assertions.assertEquals(
-                0,
-                this.creatTask(character, Mockito.mock(DieFactory.class))
-                        .setModifiersDice(-1, -2)
-                        .calculateDicePoolSize());
-    }
-
-    @Override
-    @Test
-    public void calculateDicePoolSize_WithSkillFamiliarityAndWithSpecialty() throws TaskException {
-        final SkillfulCharacter character = Mockito.mock(SkillfulCharacter.class);
-        Mockito.when(character.getAttribute(AttributeType.INTELLIGENCE)).thenReturn(1);
-        Mockito.when(character.getSkill(this.getAssertionDrivingSkill())).thenReturn(2);
-        Mockito.when(character.getSpecialties()).thenReturn(Set.of(SpecialtyType.HACKING)); // +1
-
-        Assertions.assertEquals(
-                1,
-                this.creatTask(character, Mockito.mock(DieFactory.class))
-                        .setModifiersDice(-1, -2)
-                        .calculateDicePoolSize());
-    }
-
-    @Override
-    @Test
-    public void calculateDicePoolSize_WithoutSkillFamiliarity() throws TaskException {
-        final SkillfulCharacter character = Mockito.mock(SkillfulCharacter.class);
-        Mockito.when(character.getAttribute(AttributeType.INTELLIGENCE)).thenReturn(4);
-        Mockito.when(character.getSkill(this.getAssertionDrivingSkill())).thenReturn(0); // MENTAL: -3
-
-        Assertions.assertEquals(
-                0,
-                this.creatTask(character, Mockito.mock(DieFactory.class))
-                        .setModifiersDice(-1)
-                        .calculateDicePoolSize());
-    }
-
-    @Override
-    public Set<SpecialtyType> getAssertionApplicableSpecialties() {
-        return Set.of(SpecialtyType.HACKING, SpecialtyType.DIGITAL_SECURITY);
-    }
-
-    @Override
-    public SkillType getAssertionDrivingSkill() {
-        return SkillType.COMPUTER;
-    }
-
-    @Override
-    @Test
-    public void perform() throws TaskException, DiceRollException {
-        final SkillfulCharacter character = Mockito.mock(SkillfulCharacter.class);
-        Mockito.when(character.getAttribute(AttributeType.INTELLIGENCE)).thenReturn(1);
-        Mockito.when(character.getSkill(this.getAssertionDrivingSkill())).thenReturn(2);
-
-        final DieFactory dieFactory = Mockito.mock(DieFactory.class);
-        final List<Integer> expectedResult = Arrays.asList(6, 7);
-        this.mockDiceSetResult(dieFactory, expectedResult);
-
-        final int modifiersDicePoolSIze = -1;
-
-        final List<Integer> actualResult = this.creatTask(character, dieFactory)
-                .setModifiersDice(modifiersDicePoolSIze)
-                .perform()
-                .getDiceRoll()
-                .result();
-
-        Assertions.assertEquals(expectedResult.size(), actualResult.size());
-        Assertions.assertTrue(expectedResult.containsAll(actualResult));
-        Assertions.assertTrue(actualResult.containsAll(expectedResult));
-    }
-
-    @Override
-    public ActionType getAssertionType() {
-        return ActionType.EXTENDED;
-    }
-
-    @Override
-    public Set<CategoryType> getAssertionCategories() {
-        return Set.of(CategoryType.MENTAL);
-    }
-
 }
