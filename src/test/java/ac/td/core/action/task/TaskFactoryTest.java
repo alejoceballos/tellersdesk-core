@@ -34,7 +34,7 @@ class TaskFactoryTest {
         final RecallHistoricalFacts task = new TaskFactory(
                 Mockito.mock(SkillfulCharacter.class),
                 Mockito.mock(DieFactory.class)
-        ).createRecallHistoricalFacts();
+        ).create(RecallHistoricalFacts.class);
 
         Assertions.assertNotNull(task);
     }
@@ -44,7 +44,7 @@ class TaskFactoryTest {
         final RecallHistoricalFacts task = new TaskFactory(
                 Mockito.mock(SkillfulCharacter.class),
                 Mockito.mock(DieFactory.class)
-        ).createRecallHistoricalFacts(Set.of(SpecialtyType.ENGLISH_LITERATURE));
+        ).create(RecallHistoricalFacts.class, Set.of(SpecialtyType.ENGLISH_LITERATURE));
 
         Assertions.assertNotNull(task);
     }
@@ -54,7 +54,7 @@ class TaskFactoryTest {
         final Research task = new TaskFactory(
                 Mockito.mock(SkillfulCharacter.class),
                 Mockito.mock(DieFactory.class)
-        ).createResearch();
+        ).create(Research.class);
 
         Assertions.assertNotNull(task);
     }
@@ -64,7 +64,7 @@ class TaskFactoryTest {
         final Research task = new TaskFactory(
                 Mockito.mock(SkillfulCharacter.class),
                 Mockito.mock(DieFactory.class)
-        ).createResearch(Set.of(SpecialtyType.ENGLISH_LITERATURE));
+        ).create(Research.class, Set.of(SpecialtyType.ENGLISH_LITERATURE));
 
         Assertions.assertNotNull(task);
     }
@@ -74,7 +74,7 @@ class TaskFactoryTest {
         final Translation task = new TaskFactory(
                 Mockito.mock(SkillfulCharacter.class),
                 Mockito.mock(DieFactory.class)
-        ).createTranslation();
+        ).create(Translation.class);
 
         Assertions.assertNotNull(task);
     }
@@ -84,7 +84,7 @@ class TaskFactoryTest {
         final Translation task = new TaskFactory(
                 Mockito.mock(SkillfulCharacter.class),
                 Mockito.mock(DieFactory.class)
-        ).createTranslation(Set.of(SpecialtyType.ENGLISH_LITERATURE));
+        ).create(Translation.class, Set.of(SpecialtyType.ENGLISH_LITERATURE));
 
         Assertions.assertNotNull(task);
     }
@@ -95,7 +95,7 @@ class TaskFactoryTest {
         final HackIntoComputerSystem task = new TaskFactory(
                 Mockito.mock(SkillfulCharacter.class),
                 Mockito.mock(DieFactory.class)
-        ).createHackIntoComputerSystem();
+        ).create(HackIntoComputerSystem.class);
 
         Assertions.assertNotNull(task);
     }
@@ -105,7 +105,7 @@ class TaskFactoryTest {
         final HackIntoComputerSystem task = new TaskFactory(
                 Mockito.mock(SkillfulCharacter.class),
                 Mockito.mock(DieFactory.class)
-        ).createHackIntoComputerSystem(Set.of(SpecialtyType.HACKING));
+        ).create(HackIntoComputerSystem.class, Set.of(SpecialtyType.HACKING));
 
         Assertions.assertNotNull(task);
     }

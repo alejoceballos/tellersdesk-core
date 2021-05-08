@@ -28,41 +28,28 @@ public class TaskFactory {
         this.dieFactory = dieFactory;
     }
 
-    public RecallHistoricalFacts createRecallHistoricalFacts() throws TaskCharacterException, TaskDieFactoryException {
-        return new RecallHistoricalFacts(this.character, this.dieFactory);
+    @SuppressWarnings("unchecked")
+    public <T extends SkillTask> T create(final Class<? extends SkillTask> taskClass) {
+        try {
+            return (T) taskClass
+                    .getDeclaredConstructor(SkillfulCharacter.class, DieFactory.class)
+                    .newInstance(this.character, this.dieFactory);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public RecallHistoricalFacts createRecallHistoricalFacts(final Set<SpecialtyType> nonDefaultApplicableSpecialties)
-            throws TaskCharacterException, TaskDieFactoryException, WrongSpecialtySkillException {
-        return new RecallHistoricalFacts(this.character, this.dieFactory, nonDefaultApplicableSpecialties);
-    }
-
-    public Research createResearch() throws TaskCharacterException, TaskDieFactoryException {
-        return new Research(this.character, this.dieFactory);
-    }
-
-    public Research createResearch(final Set<SpecialtyType> nonDefaultApplicableSpecialties)
-            throws TaskCharacterException, TaskDieFactoryException, WrongSpecialtySkillException {
-        return new Research(this.character, this.dieFactory, nonDefaultApplicableSpecialties);
-    }
-
-    public Translation createTranslation() throws TaskCharacterException, TaskDieFactoryException {
-        return new Translation(this.character, this.dieFactory);
-    }
-
-    public Translation createTranslation(final Set<SpecialtyType> nonDefaultApplicableSpecialties)
-            throws TaskCharacterException, TaskDieFactoryException, WrongSpecialtySkillException {
-        return new Translation(this.character, this.dieFactory, nonDefaultApplicableSpecialties);
-    }
-
-    public HackIntoComputerSystem createHackIntoComputerSystem()
-            throws TaskCharacterException, TaskDieFactoryException {
-        return new HackIntoComputerSystem(this.character, this.dieFactory);
-    }
-
-    public HackIntoComputerSystem createHackIntoComputerSystem(final Set<SpecialtyType> nonDefaultApplicableSpecialties)
-            throws TaskCharacterException, TaskDieFactoryException, WrongSpecialtySkillException {
-        return new HackIntoComputerSystem(this.character, this.dieFactory, nonDefaultApplicableSpecialties);
+    @SuppressWarnings("unchecked")
+    public <T extends SkillTask> T create(
+            final Class<? extends SkillTask> taskClass,
+            final Set<SpecialtyType> nonDefaultApplicableSpecialties) {
+        try {
+            return (T) taskClass
+                    .getDeclaredConstructor(SkillfulCharacter.class, DieFactory.class, Set.class)
+                    .newInstance(this.character, this.dieFactory, nonDefaultApplicableSpecialties);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

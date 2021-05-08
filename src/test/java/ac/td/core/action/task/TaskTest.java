@@ -1,18 +1,16 @@
 package ac.td.core.action.task;
 
-import ac.td.core.action.ActionType;
-import ac.td.core.character.CategoryType;
 import ac.td.core.character.SkillfulCharacter;
 import ac.td.core.diceroll.DiceRollException;
 import ac.td.core.diceroll.Die;
 import ac.td.core.diceroll.DieFactory;
-import ac.td.core.skill.SpecialtyType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.mockito.stubbing.OngoingStubbing;
 
-import java.util.*;
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public abstract class TaskTest<T extends Task> {

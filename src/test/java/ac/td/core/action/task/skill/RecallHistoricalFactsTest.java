@@ -1,15 +1,10 @@
 package ac.td.core.action.task.skill;
 
 import ac.td.core.action.ActionType;
-import ac.td.core.action.task.TaskException;
 import ac.td.core.character.AttributeType;
 import ac.td.core.character.CategoryType;
-import ac.td.core.character.SkillfulCharacter;
-import ac.td.core.diceroll.DieFactory;
 import ac.td.core.skill.SkillType;
 import ac.td.core.skill.SpecialtyType;
-
-import java.util.Set;
 
 @SkillMetadata(
         type = ActionType.INSTANT,
@@ -19,18 +14,4 @@ import java.util.Set;
         drivingAttribute = AttributeType.INTELLIGENCE
 )
 public class RecallHistoricalFactsTest extends SkillTaskTest<RecallHistoricalFacts> {
-
-    @Override
-    protected RecallHistoricalFacts creatTask(final SkillfulCharacter character, final DieFactory dieFactory) throws TaskException {
-        return new RecallHistoricalFacts(character, dieFactory);
-    }
-
-    @Override
-    protected RecallHistoricalFacts creatTask(
-            final SkillfulCharacter character,
-            final DieFactory dieFactory,
-            final Set<SpecialtyType> nonDefaultApplicableSpecialties) throws TaskException {
-        return new RecallHistoricalFacts(character, dieFactory, nonDefaultApplicableSpecialties);
-    }
-
 }

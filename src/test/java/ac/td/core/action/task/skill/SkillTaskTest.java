@@ -8,12 +8,12 @@ import ac.td.core.diceroll.DiceRollException;
 import ac.td.core.diceroll.DieFactory;
 import ac.td.core.skill.SpecialtyType;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.test.context.event.annotation.BeforeTestClass;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -33,11 +33,45 @@ public abstract class SkillTaskTest<T extends SkillTask> extends TaskTest<T> {
         this.skillTestMetadata = this.getClass().getAnnotation(SkillMetadata.class);
     }
 
-    protected abstract T creatTask(
+    @Override
+    protected T creatTask(
+            final SkillfulCharacter character,
+            final DieFactory dieFactory)
+            throws TaskException {
+        try {
+            return this.getSubjectClass().getConstructor(SkillfulCharacter.class, DieFactory.class)
+                    .newInstance(character, dieFactory);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            if (e.getCause() != null && e.getCause() instanceof TaskException) {
+                throw (TaskException) e.getCause();
+            }
+
+            throw new RuntimeException(e);
+        }
+    }
+
+    protected T creatTask(
             final SkillfulCharacter character,
             final DieFactory dieFactory,
             final Set<SpecialtyType> nonDefaultApplicableSpecialties)
-            throws TaskException;
+            throws TaskException {
+        try {
+            return this.getSubjectClass().getConstructor(SkillfulCharacter.class, DieFactory.class, Set.class)
+                    .newInstance(character, dieFactory, nonDefaultApplicableSpecialties);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            if (e.getCause() != null && e.getCause() instanceof TaskException) {
+                throw (TaskException) e.getCause();
+            }
+
+            throw new RuntimeException(e);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private Class<T> getSubjectClass() {
+        final ParameterizedType parameterizedType = ((ParameterizedType) this.getClass().getGenericSuperclass());
+        return (Class<T>) parameterizedType.getActualTypeArguments()[0];
+    }
 
     @Test
     public void new_NullSpecialties() throws TaskException {
