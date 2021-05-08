@@ -9,13 +9,35 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.mockito.stubbing.OngoingStubbing;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public abstract class TaskTest<T extends Task> {
 
-    protected abstract T creatTask(final SkillfulCharacter character, final DieFactory dieFactory) throws TaskException;
+    protected T creatTask(
+            final SkillfulCharacter character,
+            final DieFactory dieFactory)
+            throws TaskException {
+        try {
+            return this.getSubjectClass().getConstructor(SkillfulCharacter.class, DieFactory.class)
+                    .newInstance(character, dieFactory);
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+            if (e.getCause() != null && e.getCause() instanceof TaskException) {
+                throw (TaskException) e.getCause();
+            }
+
+            throw new RuntimeException(e);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    protected Class<T> getSubjectClass() {
+        final ParameterizedType parameterizedType = ((ParameterizedType) this.getClass().getGenericSuperclass());
+        return (Class<T>) parameterizedType.getActualTypeArguments()[0];
+    }
 
     @Test
     public void new_NullCharacter() {

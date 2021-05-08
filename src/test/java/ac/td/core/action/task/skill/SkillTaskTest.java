@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.ParameterizedType;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -33,23 +32,6 @@ public abstract class SkillTaskTest<T extends SkillTask> extends TaskTest<T> {
         this.skillTestMetadata = this.getClass().getAnnotation(SkillMetadata.class);
     }
 
-    @Override
-    protected T creatTask(
-            final SkillfulCharacter character,
-            final DieFactory dieFactory)
-            throws TaskException {
-        try {
-            return this.getSubjectClass().getConstructor(SkillfulCharacter.class, DieFactory.class)
-                    .newInstance(character, dieFactory);
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-            if (e.getCause() != null && e.getCause() instanceof TaskException) {
-                throw (TaskException) e.getCause();
-            }
-
-            throw new RuntimeException(e);
-        }
-    }
-
     protected T creatTask(
             final SkillfulCharacter character,
             final DieFactory dieFactory,
@@ -65,12 +47,6 @@ public abstract class SkillTaskTest<T extends SkillTask> extends TaskTest<T> {
 
             throw new RuntimeException(e);
         }
-    }
-
-    @SuppressWarnings("unchecked")
-    private Class<T> getSubjectClass() {
-        final ParameterizedType parameterizedType = ((ParameterizedType) this.getClass().getGenericSuperclass());
-        return (Class<T>) parameterizedType.getActualTypeArguments()[0];
     }
 
     @Test

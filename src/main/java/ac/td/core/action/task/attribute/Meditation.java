@@ -8,8 +8,11 @@ import ac.td.core.character.CategoryType;
 import ac.td.core.character.SkillfulCharacter;
 import ac.td.core.diceroll.DieFactory;
 
-import java.util.Set;
-
+@AttributeMetadata(
+        drivingAttributes = { AttributeType.RESOLVE, AttributeType.COMPOSURE },
+        categories = CategoryType.MENTAL,
+        type = ActionType.EXTENDED
+)
 public class Meditation extends AttributeTask {
 
     public Meditation(SkillfulCharacter character, DieFactory dieFactory)
@@ -17,18 +20,4 @@ public class Meditation extends AttributeTask {
         super(character, dieFactory);
     }
 
-    @Override
-    public Set<AttributeType> getDrivingAttributes() {
-        return Set.of(AttributeType.RESOLVE, AttributeType.COMPOSURE);
-    }
-
-    @Override
-    public ActionType getType() {
-        return ActionType.EXTENDED;
-    }
-
-    @Override
-    public Set<CategoryType> getCategories() {
-        return Set.of(CategoryType.MENTAL);
-    }
 }
