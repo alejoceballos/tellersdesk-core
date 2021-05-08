@@ -103,9 +103,7 @@ public abstract class SkillTaskTest<T extends SkillTask> extends TaskTest<T> {
     public void getCategories() throws TaskException {
         final Task task = this.creatTask(Mockito.mock(SkillfulCharacter.class), Mockito.mock(DieFactory.class));
         final SkillMetadata metadata = task.getClass().getAnnotation(SkillMetadata.class);
-        Assertions.assertEquals(this.skillTestMetadata.categories().length, metadata.categories().length);
-        Assertions.assertTrue(Set.of(this.skillTestMetadata.categories()).containsAll(Set.of(metadata.categories())));
-        Assertions.assertTrue(Set.of(metadata.categories()).containsAll(Set.of(this.skillTestMetadata.categories())));
+        Assertions.assertEquals(this.skillTestMetadata.drivingSkill().getCategory(), metadata.drivingSkill().getCategory());
     }
 
     @Override

@@ -66,7 +66,7 @@ public abstract class SkillTask extends Task {
 
     private int calculateUntrainedSkillPenalty() {
         if (this.hasSkillFamiliarity()) return 0;
-        if (Set.of(this.skillMetadata.categories()).contains(CategoryType.MENTAL)) return -3;
+        if (this.skillMetadata.drivingSkill().getCategory().equals(CategoryType.MENTAL)) return -3;
         return -1;
     }
 
