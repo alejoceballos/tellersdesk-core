@@ -84,11 +84,10 @@ class TaskFactoryTest {
         final Translation task = new TaskFactory(
                 Mockito.mock(SkillfulCharacter.class),
                 Mockito.mock(DieFactory.class)
-        ).create(Translation.class, Set.of(SpecialtyType.ENGLISH_LITERATURE));
+        ).create(Translation.class, Set.of(SpecialtyType.RESEARCH));
 
         Assertions.assertNotNull(task);
     }
-
 
     @Test
     public void createHackIntoComputerSystem_default() throws TaskException {
@@ -102,6 +101,26 @@ class TaskFactoryTest {
 
     @Test
     public void createHackIntoComputerSystem_nonDefault() throws TaskException {
+        final HackIntoComputerSystem task = new TaskFactory(
+                Mockito.mock(SkillfulCharacter.class),
+                Mockito.mock(DieFactory.class)
+        ).create(HackIntoComputerSystem.class, Set.of(SpecialtyType.DATA_RETRIEVAL));
+
+        Assertions.assertNotNull(task);
+    }
+
+    @Test
+    public void createInternetAndDatabaseSearches_default() throws TaskException {
+        final HackIntoComputerSystem task = new TaskFactory(
+                Mockito.mock(SkillfulCharacter.class),
+                Mockito.mock(DieFactory.class)
+        ).create(HackIntoComputerSystem.class);
+
+        Assertions.assertNotNull(task);
+    }
+
+    @Test
+    public void createInternetAndDatabaseSearches_nonDefault() throws TaskException {
         final HackIntoComputerSystem task = new TaskFactory(
                 Mockito.mock(SkillfulCharacter.class),
                 Mockito.mock(DieFactory.class)
