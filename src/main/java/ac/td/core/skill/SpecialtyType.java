@@ -15,6 +15,12 @@ public enum SpecialtyType {
     HACKING(SkillType.COMPUTER),
     PROGRAMMING(SkillType.COMPUTER),
     USER_INTERFACE_DESIGN(SkillType.COMPUTER),
+    //   CRAFTS
+    AUTOMOTIVE(SkillType.CRAFTS),
+    CARPENTRY(SkillType.CRAFTS),
+    JURY_RIGGING(SkillType.CRAFTS),
+    SCULPTING(SkillType.CRAFTS),
+    WELDING(SkillType.CRAFTS),
 
     // PHYSICAL
     EVASION(SkillType.DRIVE),

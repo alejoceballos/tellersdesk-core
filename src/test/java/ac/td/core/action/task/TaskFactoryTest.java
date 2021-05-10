@@ -1,9 +1,6 @@
 package ac.td.core.action.task;
 
-import ac.td.core.action.task.skill.HackIntoComputerSystem;
-import ac.td.core.action.task.skill.RecallHistoricalFacts;
-import ac.td.core.action.task.skill.Research;
-import ac.td.core.action.task.skill.Translation;
+import ac.td.core.action.task.skill.*;
 import ac.td.core.character.SkillfulCharacter;
 import ac.td.core.diceroll.DieFactory;
 import ac.td.core.skill.SpecialtyType;
@@ -11,9 +8,19 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.util.Map;
 import java.util.Set;
 
 class TaskFactoryTest {
+
+    private final Map<Class<? extends SkillTask>, SpecialtyType> skillsClasses = Map.of(
+            DatabaseSearches.class, SpecialtyType.USER_INTERFACE_DESIGN,
+            HackIntoComputerSystem.class, SpecialtyType.USER_INTERFACE_DESIGN,
+            InternetSearches.class, SpecialtyType.USER_INTERFACE_DESIGN,
+            RecallHistoricalFacts.class, SpecialtyType.ENGLISH_LITERATURE,
+            Research.class, SpecialtyType.ENGLISH_LITERATURE,
+            Translation.class, SpecialtyType.RESEARCH
+    );
 
     @Test
     public void new_CharacterNull() {
@@ -30,103 +37,36 @@ class TaskFactoryTest {
     }
 
     @Test
-    public void createRecallHistoricalFacts_default() throws TaskException {
-        final RecallHistoricalFacts task = new TaskFactory(
-                Mockito.mock(SkillfulCharacter.class),
-                Mockito.mock(DieFactory.class)
-        ).create(RecallHistoricalFacts.class);
+    public void create_default() {
+        this.skillsClasses.keySet().forEach(skillClass -> {
+            SkillTask task = null;
 
-        Assertions.assertNotNull(task);
+            try {
+                task = new TaskFactory(
+                        Mockito.mock(SkillfulCharacter.class),
+                        Mockito.mock(DieFactory.class)
+                ).create(skillClass);
+            } catch (final TaskException ignored) { }
+
+            Assertions.assertNotNull(task);
+        });
     }
 
     @Test
-    public void createRecallHistoricalFacts_nonDefault() throws TaskException {
-        final RecallHistoricalFacts task = new TaskFactory(
-                Mockito.mock(SkillfulCharacter.class),
-                Mockito.mock(DieFactory.class)
-        ).create(RecallHistoricalFacts.class, Set.of(SpecialtyType.ENGLISH_LITERATURE));
+    public void create_withNonDefaultSpecialty() {
+        this.skillsClasses.forEach((key, value) -> {
+            SkillTask task = null;
 
-        Assertions.assertNotNull(task);
-    }
+            try {
+                task = new TaskFactory(
+                        Mockito.mock(SkillfulCharacter.class),
+                        Mockito.mock(DieFactory.class)
+                ).create(key, Set.of(value));
+            } catch (final TaskException ignored) {
+            }
 
-    @Test
-    public void createResearch_default() throws TaskException {
-        final Research task = new TaskFactory(
-                Mockito.mock(SkillfulCharacter.class),
-                Mockito.mock(DieFactory.class)
-        ).create(Research.class);
-
-        Assertions.assertNotNull(task);
-    }
-
-    @Test
-    public void createResearch_nonDefault() throws TaskException {
-        final Research task = new TaskFactory(
-                Mockito.mock(SkillfulCharacter.class),
-                Mockito.mock(DieFactory.class)
-        ).create(Research.class, Set.of(SpecialtyType.ENGLISH_LITERATURE));
-
-        Assertions.assertNotNull(task);
-    }
-
-    @Test
-    public void createTranslation_default() throws TaskException {
-        final Translation task = new TaskFactory(
-                Mockito.mock(SkillfulCharacter.class),
-                Mockito.mock(DieFactory.class)
-        ).create(Translation.class);
-
-        Assertions.assertNotNull(task);
-    }
-
-    @Test
-    public void createTranslation_nonDefault() throws TaskException {
-        final Translation task = new TaskFactory(
-                Mockito.mock(SkillfulCharacter.class),
-                Mockito.mock(DieFactory.class)
-        ).create(Translation.class, Set.of(SpecialtyType.RESEARCH));
-
-        Assertions.assertNotNull(task);
-    }
-
-    @Test
-    public void createHackIntoComputerSystem_default() throws TaskException {
-        final HackIntoComputerSystem task = new TaskFactory(
-                Mockito.mock(SkillfulCharacter.class),
-                Mockito.mock(DieFactory.class)
-        ).create(HackIntoComputerSystem.class);
-
-        Assertions.assertNotNull(task);
-    }
-
-    @Test
-    public void createHackIntoComputerSystem_nonDefault() throws TaskException {
-        final HackIntoComputerSystem task = new TaskFactory(
-                Mockito.mock(SkillfulCharacter.class),
-                Mockito.mock(DieFactory.class)
-        ).create(HackIntoComputerSystem.class, Set.of(SpecialtyType.DATA_RETRIEVAL));
-
-        Assertions.assertNotNull(task);
-    }
-
-    @Test
-    public void createInternetAndDatabaseSearches_default() throws TaskException {
-        final HackIntoComputerSystem task = new TaskFactory(
-                Mockito.mock(SkillfulCharacter.class),
-                Mockito.mock(DieFactory.class)
-        ).create(HackIntoComputerSystem.class);
-
-        Assertions.assertNotNull(task);
-    }
-
-    @Test
-    public void createInternetAndDatabaseSearches_nonDefault() throws TaskException {
-        final HackIntoComputerSystem task = new TaskFactory(
-                Mockito.mock(SkillfulCharacter.class),
-                Mockito.mock(DieFactory.class)
-        ).create(HackIntoComputerSystem.class, Set.of(SpecialtyType.HACKING));
-
-        Assertions.assertNotNull(task);
+            Assertions.assertNotNull(task);
+        });
     }
 
 }

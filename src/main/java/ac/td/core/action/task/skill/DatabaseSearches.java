@@ -18,14 +18,14 @@ import java.util.Set;
         drivingSkill = SkillType.COMPUTER,
         drivingAttribute = AttributeType.WITS
 )
-public class InternetAndDatabaseSearches extends SkillTask {
+public class DatabaseSearches extends SkillTask {
 
-    public InternetAndDatabaseSearches(final SkillfulCharacter character, final DieFactory dieFactory)
+    public DatabaseSearches(final SkillfulCharacter character, final DieFactory dieFactory)
             throws TaskCharacterException, TaskDieFactoryException {
         super(character, dieFactory);
     }
 
-    public InternetAndDatabaseSearches(
+    public DatabaseSearches(
             final SkillfulCharacter character,
             final DieFactory dieFactory,
             final Set<SpecialtyType> nonDefaultApplicableSpecialties)

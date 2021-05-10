@@ -11,5 +11,5 @@ import ac.td.core.skill.SpecialtyType;
         drivingSkill = SkillType.COMPUTER,
         drivingAttribute = AttributeType.WITS
 )
-public class InternetAndDatabaseSearchesTest extends SkillTaskTest<InternetAndDatabaseSearches> {
+public class DatabaseSearchesTest extends SkillTaskTest<DatabaseSearches> {
 }
