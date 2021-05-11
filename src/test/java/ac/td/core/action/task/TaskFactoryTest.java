@@ -15,9 +15,12 @@ class TaskFactoryTest {
 
     private final Map<Class<? extends SkillTask>, SpecialtyType> skillsClasses = Map.of(
             DatabaseSearches.class, SpecialtyType.USER_INTERFACE_DESIGN,
+            DesignObject.class, SpecialtyType.JURY_RIGGING,
             HackIntoComputerSystem.class, SpecialtyType.USER_INTERFACE_DESIGN,
             InternetSearches.class, SpecialtyType.USER_INTERFACE_DESIGN,
+            LookForFlaws.class, SpecialtyType.JURY_RIGGING,
             RecallHistoricalFacts.class, SpecialtyType.ENGLISH_LITERATURE,
+            RepairItem.class, SpecialtyType.NOT_APPLICABLE,
             Research.class, SpecialtyType.ENGLISH_LITERATURE,
             Translation.class, SpecialtyType.RESEARCH
     );
@@ -55,6 +58,10 @@ class TaskFactoryTest {
     @Test
     public void create_withNonDefaultSpecialty() {
         this.skillsClasses.forEach((key, value) -> {
+            if (value.equals(SpecialtyType.NOT_APPLICABLE)) {
+                return;
+            }
+
             SkillTask task = null;
 
             try {
