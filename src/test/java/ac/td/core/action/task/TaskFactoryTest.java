@@ -13,16 +13,19 @@ import java.util.Set;
 
 class TaskFactoryTest {
 
-    private final Map<Class<? extends SkillTask>, SpecialtyType> skillsClasses = Map.of(
-            DatabaseSearches.class, SpecialtyType.USER_INTERFACE_DESIGN,
-            DesignObject.class, SpecialtyType.JURY_RIGGING,
-            HackIntoComputerSystem.class, SpecialtyType.USER_INTERFACE_DESIGN,
-            InternetSearches.class, SpecialtyType.USER_INTERFACE_DESIGN,
-            LookForFlaws.class, SpecialtyType.JURY_RIGGING,
-            RecallHistoricalFacts.class, SpecialtyType.ENGLISH_LITERATURE,
-            RepairItem.class, SpecialtyType.NOT_APPLICABLE,
-            Research.class, SpecialtyType.ENGLISH_LITERATURE,
-            Translation.class, SpecialtyType.RESEARCH
+    private final Map<Class<? extends SkillTask>, SpecialtyType> skillsClasses = Map.ofEntries(
+            Map.entry(DatabaseSearches.class, SpecialtyType.USER_INTERFACE_DESIGN),
+            Map.entry(DesignObject.class, SpecialtyType.JURY_RIGGING),
+            Map.entry(ExamineCrimeScene.class, SpecialtyType.CRYPTOGRAPHY),
+            Map.entry(HackIntoComputerSystem.class, SpecialtyType.USER_INTERFACE_DESIGN),
+            Map.entry(IdentifyPattern.class, SpecialtyType.CRYPTOGRAPHY),
+            Map.entry(InternetSearches.class, SpecialtyType.USER_INTERFACE_DESIGN),
+            Map.entry(LookForFlaws.class, SpecialtyType.JURY_RIGGING),
+            Map.entry(RecallHistoricalFacts.class, SpecialtyType.ENGLISH_LITERATURE),
+            Map.entry(RepairItem.class, SpecialtyType.NOT_APPLICABLE),
+            Map.entry(Research.class, SpecialtyType.ENGLISH_LITERATURE),
+            Map.entry(SolveRiddle.class, SpecialtyType.CRIME_SCENES),
+            Map.entry(Translation.class, SpecialtyType.RESEARCH)
     );
 
     @Test
