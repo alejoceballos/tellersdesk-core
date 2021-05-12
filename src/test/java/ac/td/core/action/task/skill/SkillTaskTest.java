@@ -91,15 +91,6 @@ public abstract class SkillTaskTest<T extends SkillTask> extends TaskTest<T> {
 
     @Test
     @Override
-    public void getType() throws TaskException {
-        final Task task = this.creatTask(Mockito.mock(SkillfulCharacter.class), Mockito.mock(DieFactory.class));
-        final SkillMetadata metadata = task.getClass().getAnnotation(SkillMetadata.class);
-
-        Assertions.assertEquals(this.skillTestMetadata.type(), metadata.type());
-    }
-
-    @Test
-    @Override
     public void getCategories() throws TaskException {
         final Task task = this.creatTask(Mockito.mock(SkillfulCharacter.class), Mockito.mock(DieFactory.class));
         final SkillMetadata metadata = task.getClass().getAnnotation(SkillMetadata.class);

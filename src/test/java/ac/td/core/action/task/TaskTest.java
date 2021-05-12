@@ -105,9 +105,6 @@ public abstract class TaskTest<T extends Task> {
     }
 
     @Test
-    public abstract void getType() throws TaskException;
-
-    @Test
     public abstract void getCategories() throws TaskException;
 
 }
